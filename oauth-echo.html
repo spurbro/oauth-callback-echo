@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>OAuth 回调</title></head>
+<body style="font-family:monospace;padding:24px">
+<h2>OAuth 授权回调</h2>
+<div id="out" style="font-size:20px;word-break:break-all;white-space:pre-wrap"></div>
+<script>
+var q = new URLSearchParams(location.search);
+var code = q.get('code') || '';
+var err = q.get('error') || '';
+document.title = code ? 'CODE READY' : 'OAuth 回调';
+document.getElementById('out').textContent =
+  code ? ('CODE:\n' + code + '\n\nSCOPE:\n' + (q.get('scope')||'')) :
+         ('ERROR: ' + (err || 'no code in url') + '\nFULL URL:\n' + location.href);
+</script>
+</body></html>
